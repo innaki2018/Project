@@ -9,7 +9,9 @@ pipeline{
             }
 	}
 	stage('Test'){
+  	    steps{ 		
 	       sh "cd spring-boot-package-war && mvn test"     
+ 	    }		
 	}
 	stage('Archive'){
             steps{
