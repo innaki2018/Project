@@ -17,7 +17,7 @@ pipeline{
 	}
 	stage('Archive'){
             steps{
-                archiveArtifacts artifacts: '**/target/surefire-reports/*.xml' 
+                archiveArtifacts artifacts: '**/target/*.war' 
             }	
         }
         
