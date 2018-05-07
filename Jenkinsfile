@@ -12,7 +12,7 @@ pipeline{
 	}
 	stage('Test'){
   	    steps{ 		
-	       sh "cd spring-boot-package-war && mvn test"     
+	       junit '**/target/surefire-reports/*.xml'     
  	    }		
 	}
 	stage('Archive'){
