@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                sh "cd spring-boot-package-war && mvn clean package"
+                sh "cd spring-boot-package-war && mvn clean package -Drevision=${BUILD_NUMBER} "
             }
 	}
 	stage('Test'){
