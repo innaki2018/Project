@@ -5,7 +5,7 @@ pipeline{
     }
 
     stages{
-        stage("${env.BUILD_NUMBER}"){
+        stage(${env.BUILD_NUMBER}){
             steps{
                 sh "cd spring-boot-package-war && mvn -B versions:set -DnewVersion=${env.BUILD_NUMBER} &&  mvn clean package "
             }
