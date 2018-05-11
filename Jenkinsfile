@@ -1,7 +1,7 @@
 pipeline{
     
     agent {
-      label 'master'
+      label 'jenkins-slave'
     }
 
     stages{
@@ -21,9 +21,8 @@ pipeline{
             }	
         }
     stage('Deploy'){
-        agent {
-          label 'master'
-        }
+        agent any
+
         options{
           skipDefaultCheckout()
         }
