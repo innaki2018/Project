@@ -18,11 +18,11 @@ pipeline{
                 archiveArtifacts artifacts: '**/target/*.war' 
             }	
         }
-    
+    }
      post {
          success{
                sh "cp ${env.JENKINS_HOME}/jobs/${env.JOB_NAME}/lastSuccessful/archive/spring-boot-package-war/target/spring-boot-package-war-${env.BUILD_NUMBER}.war /var/lib/tomcat7/webapps"
          }
      }
-    }
+    
 }
