@@ -29,6 +29,7 @@ pipeline{
         steps{
             sh "docker run -v ${env.JENKINS_HOME}/jobs/${env.JOB_NAME}/lastSuccessful/archive/spring-boot-package-war/target/spring-boot-package-war-${env.BUILD_NUMBER}.war:/usr/local/tomcat/webapps/spring-boot-package-war-${env.BUILD_NUMBER}.war -p 7070:8080 -d tomcat"
         }
+# docker run -v $(pwd)/spring-boot-package-war-27.war:/usr/local/tomcat/webapps/myapp.war -it -p 7474:8080 -d tomcat
     }
         
     }
