@@ -21,7 +21,7 @@ pipeline{
     }
      post {
          success{
-               sh "cp ${env.JENKINS_HOME}/jobs/${env.JOB_NAME}/lastSuccessful/archive/spring-boot-package-war/target/spring-boot-package-war-${env.BUILD_NUMBER}.war /var/lib/tomcat7/webapps"
+               sh "cp ${env.JENKINS_HOME}/jobs/${env.JOB_NAME}/builds/${env.BUILD_NUMBER}/archive/spring-boot-package-war/target/spring-boot-package-war-${env.BUILD_NUMBER}.war /var/lib/tomcat7/webapps"
          }
      }
     
