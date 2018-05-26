@@ -24,7 +24,7 @@ pipeline{
      
       stage('Deploy Docker'){
           steps{
-              sh "pwd && ls -l && ls **/target/*.war"
+              sh "pwd && ls -l && ls **/target/*.war && cd spring-boot-package-war && docker build -t my-java-app ."
           }
       } 
      }
