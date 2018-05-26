@@ -24,7 +24,7 @@ pipeline{
      
       stage('Deploy Docker'){
           steps{
-              sh "ls **/target/*.war"
+              sh "pwd && ls **/target/*.war"
           }
       } 
      }
