@@ -5,6 +5,7 @@ pipeline{
     }	
 
     stages{
+
         stage('Build/Test'){
             steps{
                 sh "cd spring-boot-package-war && mvn -B versions:set -DnewVersion=${env.BUILD_NUMBER} &&  mvn clean package "
@@ -19,14 +20,17 @@ pipeline{
             steps{
                 archiveArtifacts artifacts: '**/target/*.war' 
             }	
-        }
-    
-     
-      stage('Deploy Docker'){
+        }   
+        stage('Docker image'){
           steps{
-              sh "pwd && ls -l && ls **/target/*.war && cd spring-boot-package-war && ls -l && docker build -t my-java-app ."
+              sh "cd spring-boot-package-war && docker build -t my-java-app ."
+            }
+        }
+        stage('Deploy image'){
+          steps{
+             sh "kubectl run myjavaapp --image=my-java-app --port=8080"
           }
-      } 
-     }
-    
+        } 
+ 
+   }    
 }
