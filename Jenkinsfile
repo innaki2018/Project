@@ -28,7 +28,7 @@ pipeline{
         }
         stage('Deploy image'){
           steps{
-             sh "kubectl run myjavaapp --image=my-java-app --port=8080"
+             sh "kubectl delete deploy --namespace jenkins myjavaapp && kubectl run myjavaapp --image=my-java-app --port=8080"
           }
         } 
  
