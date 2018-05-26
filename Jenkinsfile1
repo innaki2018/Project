@@ -1,8 +1,6 @@
 pipeline{
     
-    agent {
-      label 'k8s'
-    }	
+    agent any
 
     stages{
         stage('Build/Test'){
@@ -24,7 +22,7 @@ pipeline{
      
       stage('Deploy Docker'){
           steps{
-              sh "ls **/target/*.war"
+              sh "docker run -p 7474:8080 -v ${env.JENKINS_HOME}/jobs/${env.JOB_NAME}/builds/${env.BUILD_NUMBER}/archive/spring-boot-package-war/target/spring-boot-package-war-${env.BUILD_NUMBER}.war:/usr/local/tomcat/webapps/myapp.war -d tomcat"
           }
       } 
      }
