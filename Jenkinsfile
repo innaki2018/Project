@@ -23,12 +23,12 @@ pipeline{
         }   
         stage('Docker image'){
           steps{
-              sh "cd spring-boot-package-war && docker build -t my-java-app ."
+              sh "cd spring-boot-package-war && docker build -t gcr.io/my-gke-205110/my-java-app ."
             }
         }
         stage('Deploy image'){
           steps{
-             sh "kubectl run myjavaapp --image=my-java-app --port=8080"
+             sh "kubectl run myjavaapp --image=gcr.io/my-gke-205110/my-java-app --port=8080"
           }
         } 
  
