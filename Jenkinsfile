@@ -23,17 +23,17 @@ pipeline{
         }   
         stage('Docker image'){
           steps{
-              sh "cd spring-boot-package-war && docker build -t gcr.io/my-gke-205110/my-java-app ."
+              sh "cd spring-boot-package-war && docker build -t gcr.io/my-gke-205110/my-java-app:${env.BUILD_NUMBER} ."
           }
         }
 	stage('Push image to google container'){
           steps{
-              sh"gcloud docker -- push gcr.io/my-gke-205110/my-java-app"
+              sh "gcloud docker -- push gcr.io/my-gke-205110/my-java-app:${env.BUILD_NUMBER}"
           } 
         }
         stage('Deploy image'){
           steps{
-             sh "kubectl run myjavaapp --image=gcr.io/my-gke-205110/my-java-app --port=8080 && kubectl expose deployment myjavaapp --type=LoadBalancer --namespace jenkins"
+             sh "kubectl run myjavaapp --image=gcr.io/my-gke-205110/my-java-app:${env.BUILD_NUMBER} --port=8080 && kubectl expose deployment myjavaapp --type=LoadBalancer --namespace jenkins"
           }
         } 
  
