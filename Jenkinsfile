@@ -30,7 +30,8 @@ pipeline{
           steps{
               sh "gcloud docker -- push gcr.io/my-gke-205110/my-java-app:${env.BUILD_NUMBER} && \
                   cd spring-boot-package-war && \
-                  sed -r -i 's/(my-java-app:)([0-9]+)/my-java-app:${env.BUILD_NUMBER}/g' app-deployment.yml"
+                  sed -r -i 's/(my-java-app:)([0-9]+)/my-java-app:${env.BUILD_NUMBER}/g' app-deployment.yml && \
+                  cat app-deployment.yml"
           } 
         }
         stage('Deploy image'){
