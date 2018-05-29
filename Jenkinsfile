@@ -36,8 +36,7 @@ pipeline{
         }
         stage('Deploy image'){
           steps{
-             sh "cd spring-boot-package-war && \ 
-                 kubectl --namespace jenkins apply -f app-deployment.yml"   
+             sh "cd spring-boot-package-war && kubectl --namespace jenkins apply -f app-deployment.yml"   
           }
         } 
  
