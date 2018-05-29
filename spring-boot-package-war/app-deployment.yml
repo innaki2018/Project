@@ -1,0 +1,36 @@
+---
+kind: Service   
+apiVersion: v1
+metadata:
+  name: myjavaapp-service
+spec:
+  selector:
+    app: myjavaapp
+  ports:
+    - protocol: "TCP"
+      # Port accessible inside cluster
+      port: 8080
+      # Port to forward to inside the pod
+      targetPort: 8080
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myjavaapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myjavaapp
+  template:
+    metadata:
+      labels:
+        app: myjavaapp
+    spec:
+      containers:
+        - name: myjavaapp-pod
+          image: gcr.io/my-gke-205110/my-java-app:100
+          ports:
+            - containerPort: 8080
