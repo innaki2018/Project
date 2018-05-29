@@ -36,8 +36,7 @@ pipeline{
         }
         stage('Deploy image'){
           steps{
-             sh "cd spring-boot-package-war && \ 
-                 kubectl --namespace jenkins apply -f app-deployment.yml"   
+             sh "kubectl run myjavaapp --image=gcr.io/my-gke-205110/my-java-app:${env.BUILD_NUMBER} --port=8080 && kubectl expose deployment myjavaapp --type=LoadBalancer --namespace jenkins"
           }
         } 
  
